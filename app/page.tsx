@@ -1,12 +1,11 @@
+
 import ProductAI from "@/components/ProductAI";
+import React from "react";
 
 
-export default function Home() {
+const Home = () => {
   return (
-    <main className="overflow-hidden">
-
-      <ProductAI/>
-      
-    </main>
-  )
+    <ProductAI/>  )
 }
+
+export default Home
