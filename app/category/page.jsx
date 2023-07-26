@@ -4,10 +4,8 @@ import axios from 'axios';
 import Sidebar from '@/components/Sidebar';
 import ProductCard from '@/components/ProductCard';
 import Loading from '@/components/Loading';
-import CartIcon from '@/components/CartIcon';
 
-
-const CategoryPage = ({ title }) => {
+const CategoryPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState([]); 
@@ -39,7 +37,7 @@ const CategoryPage = ({ title }) => {
       const response = await axios.post('http://localhost:8000/posts/products/find', {
         product_name: productName,
       });
-      console.log(response.data)
+      // console.log(response.data)
       setSelectedProduct(response.data);
     } catch (error) {
       console.error("Error fetching product details:", error);
@@ -48,7 +46,6 @@ const CategoryPage = ({ title }) => {
   };
 
   if (loading) return <Loading></Loading>
-
 
   return (
     <div className="category-page-container">
@@ -72,11 +69,7 @@ const CategoryPage = ({ title }) => {
       </div>
     </div>
   </div>
-  </div>
-
-
-
-  
+  </div>  
   );
 };
 
