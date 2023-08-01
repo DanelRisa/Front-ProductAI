@@ -7,17 +7,18 @@ export const metadata = {
   description: 'Откройте мир выгодных покупок!',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const isCategoryPage = typeof window !== 'undefined' && window.location.pathname.includes('category');
-
-  return (
+export default function RootLayout({ 
+  children,
+ }: {
+   children: React.ReactNode
+   }) {
+return (
     <html lang="en">
-      <body className="relative flex flex-col min-h-screen">
-        <NavBar />
-        
-        <main className="flex-grow">{children}</main>
-        {isCategoryPage && <Footer />} {/* Render the footer only on CategoryPage */}
-      </body>
-    </html>
-  );
+    <body className="relative flex flex-col min-h-screen">
+             <NavBar />
+            <main className='flex-growth'>{children}</main>
+            <Footer />
+          </body>
+         </html>
+       );
 }

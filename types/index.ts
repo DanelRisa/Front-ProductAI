@@ -18,9 +18,12 @@ export interface ProductCardProps{
     onAddToCart:any
     showButton:any
     isCartPage:boolean
+    onDelete:any,
 }
 
 export interface SidebarProps{
     products: string[];
     onProductClick: any;
+    isSidebarOpen: boolean;
+    setIsSidebarOpen: any;
 }

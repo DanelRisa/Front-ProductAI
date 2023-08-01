@@ -5,6 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import Loading from '@/components/Loading';
 import Cross from "@/components/Cross";
 
+
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,7 @@ const CartPage = () => {
             "Authorization": `Bearer ${accessToken}`,
           },
         };
-        // console.log("Token:", accessToken);
+        console.log("Token:", accessToken);
 
         const response = await axios.get(
           "http://localhost:8000/cart/get_cart/",
@@ -37,44 +38,68 @@ const CartPage = () => {
 
     fetchCartItems();
   }, []);
+    // Function to handle the deletion of a product
+    const handleDeleteProduct = async (productId) => {
+      try {
+        const accessToken = localStorage.getItem("token");
+  
+        const config = {
+          headers: {
+            "Authorization": `Bearer ${accessToken}`,
+          },
+        };
+  
+        // Make the API call to delete the product
+        await axios.delete(`http://localhost:8000/cart/delete_product/${productId}`, config);
+  
+        // Remove the product from the state
+        setCartItems((prevCartItems) => prevCartItems.filter(item => item._id !== productId));
+      } catch (error) {
+        console.error("Error deleting product:", error);
+      }
+    };
 
+  console.log("Cart Items:", cartItems);
   if (loading) return <Loading></Loading>
 
-    return (
-      <div className="mx-auto justify-between md:flex md:space-x-6 xl:px-12 pt-20 md:w-1/2 ">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {cartItems.map((item, index) => (
-            <ProductCard
-            _id={item._id}
-              key={index}
-              title={item.title} 
-              price={item.price} 
-              image={item.image} 
-              showButton={false}
-              product_url={item.product_url}
-              isCartPage={true}
-            />
-           
-          ))}
+  const totalPrice = cartItems.reduce((total, item) => total + parseFloat(item.price.replace(/[^\d.]/g, "")), 0).toFixed(2);
 
-        {/* /*<div className=" h-full rounded-lg border bg-white p-6 shadow-md md:w-1/3">
-          {/* <div classname="mb-2 flex justify-between">
-            <p classname="text-gray-700">Общая сумма</p>
-            <p classname="text-gray-700">129.99</p>
-          </div> *
-          
-          <hr className="my-4" />
-          <div className="flex justify-between">
-            <p className="text-lg font-bold">Total</p>
-            <div className="">
-              <p className="mb-1 text-lg font-bold">134.98</p>
-            </div>
-          </div>
-          <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
-          </div> */}
-      </div> 
+
+    return (
+<div className="flex flex-wrap justify-center mb-40">
+  <div className="w-full md:w-1/2  px-6 md:px-12 pt-20">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {cartItems.map((item, index) => (
+        <ProductCard
+          key={index}
+          _id={item._id}
+          title={item.title}
+          price={item.price}
+          image={item.image}
+          showButton={false}
+          product_url={item.product_url}
+          isCartPage={true}
+          onDelete={handleDeleteProduct} // Pass the delete function to the ProductCard component
+        />
+      ))}
+    </div>
+  </div>
+  <div className="w-full md:w-1/4 px-6 md:px-12 pt-20">
+    <div className="rounded-lg border bg-white p-6 shadow-md">
+      <div className="mb-2 flex justify-between">
+        <p className="text-gray-700">Общая сумма</p>
       </div>
-    );
-     }
+      <hr className="my-4" />
+      <div className="flex justify-between">
+        <div className="">
+          <p className="mb-1 text-lg font-bold">{totalPrice}₸</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  );
+};
     
 export default CartPage;

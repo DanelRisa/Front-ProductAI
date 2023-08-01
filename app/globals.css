@@ -4,6 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +13,7 @@
   font-family: "Comfortaa", sans-serif;
   
 }
+
 
 .category-page-container ~ .footer {
   display: none;
@@ -60,7 +63,7 @@
 }
 
 .product__image {
-  @apply relative xl:w-full w-[90%] xl:h-full h-[500px] z-0;
+  @apply relative xl:w-full w-[100%] xl:h-full h-[500px] z-0;
 }
 
 .product__image-overlay {
@@ -92,9 +95,9 @@
 /* END: Home styles */
 
 /* START: Product Card styles */
-.product-card {
+/* .product-card {
   @apply flex flex-col p-6 justify-center items-start text-black-100 bg-zinc-100 hover:bg-white hover:shadow-xl rounded-3xl;
-} 
+}  */
 
 .product-productd__content {
   @apply w-full flex justify-between items-start gap-2;
@@ -367,4 +370,55 @@
 
 .flex-between {
   @apply flex justify-between items-center;
+}
+
+
+.animation-hover:after {
+  background: none repeat scroll 0 0 transparent;
+  content: "";
+  height: 2px;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  @apply w-0 bg-orange-500 left-1/2 block bottom-0 absolute;
+}
+.animation-active:after {
+  @apply left-0 w-full;
+}
+.animation-hover:hover:after {
+  @apply left-0 w-full;
+}
+
+li.custom-list:before {
+  content: "\2022";
+  text-indent: -9999999px; 
+
+  width: 0.4em;
+  height: 1em;
+  background-repeat: no-repeat;
+
+  background-size: 0.4em 0.7em;
+  background-position: 0 0.3em;
+  font-size: 300%;
+  top: -0.35em;
+  @apply absolute block;
+}
+li.circle-check:before {
+  background-image: url("/assets/Icon/checklist.svg");
+  left: -0.7em;
+  top: -0.4em;
+}
+li.check:before {
+  left: -0.5em;
+  background-image: url("/assets/Icon/jam_check.svg");
+  top: -0.5em;
+  font-size: 400%;
+}
+/* Slideshow */
+.slick-dots li {
+  @apply inline-block;
+}
+.slick-dots span {
+  @apply bg-gray-500;
+}
+.slick-dots .slick-active span {
+  @apply bg-orange-500 rounded-l-full rounded-r-full w-12;
 }

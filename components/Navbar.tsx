@@ -7,59 +7,81 @@ import CustomButton from "./CustomButton";
 import CartIcon from "./CartIcon";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ButtonOutline from "./ButtonOutline."
 
 const NavBar = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const [activeLink, setActiveLink] = useState(null);
+  const [scrollActive, setScrollActive] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setScrollActive(window.scrollY > 20);
+    });
+  }, []);
+
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  const fetchCartItemsCount = async () => {
+    try {
+      const accessToken = localStorage.getItem("token");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      const response = await axios.get("http://localhost:8000/cart/get_cart/", config);
+      setCartItemsCount(response.data.length);
+    } catch (error) {
+      console.error("Error fetching cart items:", error);
+      setCartItemsCount(0);
+    }
+  };
 
   useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        // Fetch cart items from the server using axios or any other method
-        // Set the cart items to the state
-        // For example:
-        const response = await axios.get("http://localhost:8000/cart/get_cart/");
-        setCartItems(response.data);
-      } catch (error) {
-        console.error("Error fetching cart items:", error);
-        setCartItems([]);
-      }
-    };
+    fetchCartItemsCount();
+    const intervalId = setInterval(fetchCartItemsCount, 100);
 
-    fetchCartItems();
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
-  console.log("Cart items count:", cartItems.length); // Add this line to check the cart items count
+
   return (
-  <header className='w-full absolute z-10'>
-    <nav className='max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-6 py-4 bg-transparent'>
-      <div className='flex justify-center items-center '>
-        <Link href='/'>
+    <header className={
+      " top-0 w-ful z-10 z-30 bg-white-500 transition-all "
+    }>
+      <nav className="max-w-[1440px] mx-auto flex justify-between items-center sm:px-6 px-4 py-4 bg-transparent">
+
+        <div className="flex justify-center items-center">
+          <Link href="/">
             <Image
-              src='/logo.svg'
-              alt='logo'
+              src="/logo.svg"
+              alt="logo"
               width={64}
               height={15}
-              className='object-contain'
+              className="object-contain"
             />
-        </Link>
-        <span className='orange_gradient font-extrabold ml-2 text-xl '>ProductAI</span>
-      </div>
-      <div className="flex items-center ">
-      <Link href='/sign'>
-      <CustomButton
-        title='Вход'
-        btnType='button'
-        containerStyles='px-4 py-1 mt-4 text-sm bg-orange-500 rounded-full text-white'
-      />
-      </Link>
-      <div className='ml-12'>
-      <CartIcon cartItemsCount={cartItems.length} />
-      </div>
-      </div>
+          </Link>
+          <span className="sm:inline hidden orange_gradient font-extrabold ml-2 text-xl">ProductAI</span>
+        </div>
+        <div className="flex items-center ">
+          <Link href='/sign'>
+            <div className="col-start-10 col-end-12 font-medium flex justify-end items-center">
+              <Link href="/login">
+              <p className="text-black-600 mx-2 sm:mx-4 capitalize tracking-wide hover:text-orange-500 transition-all">
+                  Вход
+                </p>
+              </Link>
+              <ButtonOutline>Регистрация</ButtonOutline>
+            </div>
+          </Link>
+          <div className='ml-12 sm:ml-4'>
+            <CartIcon cartItemsCount={cartItemsCount} />
+          </div>
+        </div>
 
-    </nav>
-  </header>
-);
-  };
+      </nav>
+    </header>
+  );
+};
 
 
 
