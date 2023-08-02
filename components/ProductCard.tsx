@@ -33,7 +33,7 @@
         };
         
         const response = await axios.post(
-          "http://localhost:8000/cart/add_to_cart/",
+          "https://fastapi-z5dp.onrender.com/cart/add_to_cart/",
           payload,
           config
         );
@@ -54,7 +54,7 @@
             },
           };
 
-          const response = await axios.delete(`http://localhost:8000/cart/delete_product/${_id}`, config);
+          const response = await axios.delete(`https://fastapi-z5dp.onrender.com/cart/delete_product/${_id}`, config);
 
           console.log('Product deleted successfully!');
 

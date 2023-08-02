@@ -70,7 +70,7 @@ const CategoryPage = () => {
         let body = new Object();
         body.name = name;
         console.log(JSON.stringify(body));
-        const response = await axios.post('http://localhost:8000/posts/ingredients/', body);
+        const response = await axios.post('https://fastapi-z5dp.onrender.com/posts/ingredients/', body);
         console.log(response.data)
         setProducts(response.data);
       } catch (error) {
@@ -87,7 +87,7 @@ const CategoryPage = () => {
   const handleProductClick = async (productName) => {
     try {
       setLoadingProducts(true);
-      const response = await axios.post('http://localhost:8000/posts/products/find', {
+      const response = await axios.post('https://fastapi-z5dp.onrender.com/posts/products/find', {
         product_name: productName,
       });
       // console.log(response.data)

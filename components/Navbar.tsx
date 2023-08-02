@@ -27,7 +27,7 @@ const NavBar = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       };
-      const response = await axios.get("http://localhost:8000/cart/get_cart/", config);
+      const response = await axios.get("https://fastapi-z5dp.onrender.com/cart/get_cart/", config);
       setCartItemsCount(response.data.length);
     } catch (error) {
       console.error("Error fetching cart items:", error);

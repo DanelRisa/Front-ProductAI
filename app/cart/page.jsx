@@ -23,7 +23,7 @@ const CartPage = () => {
         console.log("Token:", accessToken);
 
         const response = await axios.get(
-          "http://localhost:8000/cart/get_cart/",
+          "https://fastapi-z5dp.onrender.com/cart/get_cart/",
           config
           );
         console.log(response.data);
@@ -50,7 +50,7 @@ const CartPage = () => {
         };
   
         // Make the API call to delete the product
-        await axios.delete(`http://localhost:8000/cart/delete_product/${productId}`, config);
+        await axios.delete(`https://fastapi-z5dp.onrender.com/cart/delete_product/${productId}`, config);
   
         // Remove the product from the state
         setCartItems((prevCartItems) => prevCartItems.filter(item => item._id !== productId));

@@ -6,7 +6,7 @@ import ButtonOutline from "./ButtonOutline.";
 import { motion } from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./ScrollAnimationWrapper";
-
+import Link from "next/link";
 const Pricing = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
@@ -53,7 +53,9 @@ const Pricing = () => {
                   </h5>
                   <p>Присоединись к нам и окунись в мир увлекательных открытий!</p>
                 </div>
-                <ButtonPrimary>Начать</ButtonPrimary>
+                <Link href='/sign'>
+                <ButtonPrimary> Начать</ButtonPrimary>
+                </Link>
               </div>
               <div
                 className="absolute bg-black-600 opacity-5 w-11/12 roudned-lg h-60 sm:h-56 top-0 mt-8 mx-auto left-0 right-0"
