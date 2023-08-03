@@ -54,7 +54,7 @@ const Pricing = () => {
                   <p>Присоединись к нам и окунись в мир увлекательных открытий!</p>
                 </div>
                 <Link href='/sign'>
-                <ButtonPrimary> Начать</ButtonPrimary>
+                <ButtonOutline> Начни сейчас!</ButtonOutline>
                 </Link>
               </div>
               <div
