@@ -15,7 +15,7 @@ const ProductAI = () => {
 
   return (
     <div className="productai">
-      <div className="flex-1 pt-44 padding-x">
+      <div className="flex-1 pt-36 padding-x">
         <div className="flex flex-col sm:flex-row gap-5 relative z-0 max-w-[1440px] mx-auto">
           <motion.div
             className="w-full sm:w-1/2 pr-4"
@@ -23,17 +23,17 @@ const ProductAI = () => {
             initial="hidden"
             animate="visible"
           >
-            <h1 className="product__title text-4xl sm:text-5xl font-extrabold">
+            <h1 className="text-2xl lg:text-5xl sm:text-4xl font-extrabold">
               Откройте мир выгодных покупок - быстро и легко
             </h1>
-            <p className="product__subtitle text-xl sm:text-2xl text-black-100 font-light mt-5">
+            <p className="text-xl sm:text-2xl text-black-100 font-light mt-5 mb-8">
               Экономьте время и деньги, исследуя дешевые позиции с различных супермаркетов прямо у нас!
             </p>
 
             <Link href="./sign">
               <CustomButton
                 title="Перейти к поиску"
-                containerStyles="px-4 py-1 mt-4 text-sm bg-orange-500 rounded-full text-white mt-10"
+                containerStyles="text-white rounded-3xl bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-otage-600 shadow-lg shadow-orange-400/40 dark:shadow-lg dark:shadow-orange-500/50 text-center "
                 handleClick={handleScroll}
               />
             </Link>
@@ -44,7 +44,7 @@ const ProductAI = () => {
             initial="hidden"
             animate="visible"
           >
-            <div className="product__image">
+            <div className=" w-full object-contain">
               <Image
                 src="/product2.jpg"
                 alt="product"

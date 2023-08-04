@@ -26,4 +26,5 @@ export interface SidebarProps{
     onProductClick: any;
     isSidebarOpen: boolean;
     setIsSidebarOpen: any;
+    prompt:any
 }

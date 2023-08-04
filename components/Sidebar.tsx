@@ -25,7 +25,9 @@ const Sidebar = ({ products, onProductClick, isSidebarOpen, setIsSidebarOpen }: 
             <List>
               {products.map((product, index) => (
                 <ListItem key={index} onClick={() => onProductClick(product)}>
-                  <p className="pt-2 font-semibold text-black text-lg  whitespace-normal sm:whitespace-nowrap">{product}</p>
+                   <p className={`pb-2 ${index === 0 ? 'pb-5 font-semibold text-2xl' : 'font-normal text-lg'} text-black whitespace-normal sm:whitespace-nowrap hover:text-blue-600`}>
+                    {product}
+                  </p>
                 </ListItem>
               ))}
             </List>

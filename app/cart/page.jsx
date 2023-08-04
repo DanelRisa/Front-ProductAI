@@ -66,7 +66,7 @@ const CartPage = () => {
 
 
     return (
-<div className="flex flex-wrap justify-center mb-40">
+<div className="flex flex-wrap justify-center mb-60">
   <div className="w-full md:w-1/2  px-6 md:px-12 pt-20">
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {cartItems.map((item, index) => (
@@ -79,7 +79,7 @@ const CartPage = () => {
           showButton={false}
           product_url={item.product_url}
           isCartPage={true}
-          onDelete={handleDeleteProduct} // Pass the delete function to the ProductCard component
+          onDelete={handleDeleteProduct} 
         />
       ))}
     </div>

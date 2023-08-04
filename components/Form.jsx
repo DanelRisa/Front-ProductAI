@@ -10,7 +10,7 @@ const Form = () => {
   return (
     <section className='w-full max-w-full flex-start flex-col'>
       <h1 className='head_text text-left'>
-        <span className='orange_gradient'>Что ищем сегодня?</span>
+        <span className='orange_gradient'>Что готовим сегодня?</span>
       </h1>
       <p className='desc text-left max-w-md'>
         Персонализированный поиск выгодных предложений и кулинарных рецептов - все в одном месте!
@@ -25,7 +25,7 @@ const Form = () => {
           <textarea
             value={post.prompt}
             onChange={(e) => setPost({ ...post, prompt: e.target.value })}
-            placeholder='Напиши свой запрос здесь'
+            placeholder='Напиши блюдо. Например: манты'
             required
             className='form_textarea '
           />
@@ -40,7 +40,7 @@ const Form = () => {
             <CustomButton
               title="Поехали"
               btnType="button"
-              containerStyles="px-5 py-1.5 text-sm bg-orange-500 rounded-full text-white"  
+              containerStyles="px-5 py-1.5 text-sm text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-otage-600 shadow-lg shadow-orange-400/40 dark:shadow-lg dark:shadow-orange-500/50 text-center rounded-full"  
             />
           </Link>
         </div>

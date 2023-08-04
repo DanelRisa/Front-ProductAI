@@ -12,6 +12,8 @@ import ButtonOutline from "./ButtonOutline."
 const NavBar = () => {
   const [activeLink, setActiveLink] = useState(null);
   const [scrollActive, setScrollActive] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setScrollActive(window.scrollY > 20);
@@ -20,8 +22,11 @@ const NavBar = () => {
 
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const fetchCartItemsCount = async () => {
-    try {
+     try {
       const accessToken = localStorage.getItem("token");
+      if (accessToken) {
+        setLoggedIn(true); 
+      }
       const config = {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -33,6 +38,11 @@ const NavBar = () => {
       console.error("Error fetching cart items:", error);
       setCartItemsCount(0);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); 
+    setLoggedIn(false); 
   };
 
   useEffect(() => {
@@ -62,17 +72,28 @@ const NavBar = () => {
           </Link>
           <span className="sm:inline hidden orange_gradient font-extrabold ml-2 text-xl">ProductAI</span>
         </div>
-        <div className="flex items-center ">
-          <Link href='/sign'>
-            <div className="col-start-10 col-end-12 font-medium flex justify-end items-center">
-              <Link href="/login">
+        <div className="flex items-center">
+        {loggedIn ? ( 
+            <button
+              className="text-black-600 mx-2 sm:mx-4 capitalize tracking-wide hover:text-orange-500 transition-all pr-2"
+              onClick={handleLogout}
+            >
+              <ButtonOutline>
+                Выйти
+              </ButtonOutline>
+            </button>
+          ) : (
+          <Link href='/login'>
+            <div className="col-start-10 col-end-12 font-medium flex justify-end items-center pr-8">
+              <Link href="/sign">
               <p className="text-black-600 mx-2 sm:mx-4 capitalize tracking-wide hover:text-orange-500 transition-all">
-                  Вход
+                  Регистрация
                 </p>
               </Link>
-              <ButtonOutline>Регистрация</ButtonOutline>
+              <ButtonOutline>Вход</ButtonOutline>
             </div>
           </Link>
+            )}
           <div className='ml-12 sm:ml-4'>
             <CartIcon cartItemsCount={cartItemsCount} />
           </div>

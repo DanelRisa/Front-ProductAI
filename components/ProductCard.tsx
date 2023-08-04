@@ -58,7 +58,6 @@
 
           console.log('Product deleted successfully!');
 
-          // window.location.reload();
         } catch (error) {
           console.error('Error deleting product:', error);
         }
@@ -72,15 +71,15 @@
           <div className="flex justify-end w-full">
           {isCartPage && (
             <button
-              onClick={() => onDelete(_id)} // Call the onDelete function with the product ID as an argument
+              onClick={() => onDelete(_id)} 
               className="px-4 py-1.5 rounded-md bg-red-500 text-white hover:bg-red-600"
             >
               <FiTrash2 size={18} className="mr-1" />
             </button>
           )}
           </div>
-          <figure>
-            <img src={image} className="product-card__image w-full object-contain my-3" />
+          <figure className="sm:mx-auto block">
+            <img src={image} className="product-card__image w-full object-contain my-3 mx-auto" />
           </figure>
           <div className="product-productd__content w-full flex flex-col sm:flex-row justify-between items-start gap-2">
             <h2 className="product-card__content-title text-2xl leading-7 font-bold capitalize">

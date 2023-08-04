@@ -14,7 +14,7 @@ const CategoryPage = () => {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [selectedSupermarket, setSelectedSupermarket] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [sortOrder, setSortOrder] = useState("asc"); // "asc" for ascending, "desc" for descending
+  const [sortOrder, setSortOrder] = useState("asc"); 
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -28,7 +28,6 @@ const CategoryPage = () => {
       : [...selectedProduct];
 
     sorted.sort((a, b) => {
-      // Assuming the price is in string format, convert it to numbers for comparison
       const priceA = parseFloat(a.price.replace(/\D/g, ""));
       const priceB = parseFloat(b.price.replace(/\D/g, ""));
 
@@ -45,7 +44,6 @@ const CategoryPage = () => {
       setSelectedProduct(sorted);
     }
 
-    // Toggle the sorting order on each click
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
 
@@ -87,10 +85,11 @@ const CategoryPage = () => {
   const handleProductClick = async (productName) => {
     try {
       setLoadingProducts(true);
+      console.log(productName);
       const response = await axios.post('https://fastapi-z5dp.onrender.com/posts/products/find', {
         product_name: productName,
       });
-      // console.log(response.data)
+      console.log(response.data)
       setSelectedProduct(response.data);
     } catch (error) {
       console.error("Error fetching product details:", error);
@@ -107,26 +106,26 @@ const CategoryPage = () => {
       <div className="">
         <Sidebar products={products} onProductClick={handleProductClick} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
       </div>
-      <div className="w-full px-5">
+      <div className="w-full px-5 lg:ml-10 mb-14">
         <div className="flex flex-colflex flex-col sm:flex-row items-center justify-center ">
           <div className="flex sm:flex-row">
 
             <button onClick={toggleSidebar} className={` lg:hidden ${isSidebarOpen ? 'hidden' : 'block'} `}><MenuIcon /></button>
 
 
-            <button onClick={handleSort} className="p-2 ml-4 bg-blue-500 text-white sm:ml-2 rounded-md border">
+            <button onClick={handleSort} className="p-2 ml-4 bg-orange-500 text-white sm:ml-2 rounded-md border">
               Цены {sortOrder === "asc" ? "дороже" : "дешевле"}
             </button>
 
             <button
-              className={`px-4 ml-4 py-2 sm:mt-0 sm:ml-2 rounded-md border ${selectedSupermarket === "Arbuz" ? "bg-green-500 text-white" : "bg-white text-blue-500"
+              className={`px-4 ml-4 py-2 sm:mt-0 sm:ml-2 rounded-md border ${selectedSupermarket === "Arbuz" ? "bg-orange-500 text-white" : "bg-white text-orange-500"
                 }`}
               onClick={() => handleSupermarketFilter("Arbuz")}
             >
               Arbuz
             </button>
             <button
-              className={`px-4 ml-4 py-2 sm:mt-0 sm:ml-2 rounded-md border ${selectedSupermarket === "Galmart" ? "bg-green-500 text-white" : "bg-white text-blue-500"
+              className={`px-4 ml-4 py-2 sm:mt-0 sm:ml-2 rounded-md border ${selectedSupermarket === "Galmart" ? "bg-orange-500 text-white" : "bg-white text-orange-500"
                 }`}
               onClick={() => handleSupermarketFilter("Galmart")}
             >

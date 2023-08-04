@@ -10,7 +10,6 @@ const Page = () => {
   const router = useRouter();
   const [username, setUsernamel] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState('');
 
   const handleEmailChange = (event) => {
     setUsernamel(event.target.value);
@@ -20,14 +19,13 @@ const Page = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setLoggedIn(true);
-  };
-
-  if (loggedIn) {
-    return <p>You are already signed in!</p>;
-  }
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   setLoggedIn(true);
+  // };
+  // if (loggedIn) {
+  //   return <p>You are already signed in!</p>;
+  // }
 
   async function authorizeUser(event) {
     event.preventDefault();
@@ -37,7 +35,7 @@ const Page = () => {
       userData.append('username', username);
       userData.append('password', password); 
 
-      const response = await axios.post('http://localhost:8000/auth/users/tokens', userData, {
+      const response = await axios.post('https://fastapi-z5dp.onrender.com/auth/users/tokens', userData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -90,7 +88,7 @@ const Page = () => {
                 {/* <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a> */}
               </div>
               <button type="submit" className="w-full text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-primary-800" onClick={authorizeUser}>Принять</button>
-<p className="text-sm font-light text-gray-500 dark:text-gray-800">
+                <p className="text-sm font-light text-gray-500 dark:text-gray-800">
                 Еще нет аккаунта? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500"><Link href ='/sign'>Регистрация</Link></a>
               </p>
             </form>
