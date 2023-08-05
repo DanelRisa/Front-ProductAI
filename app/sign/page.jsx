@@ -36,7 +36,7 @@ const Page = () => {
         const response = await axios.post('https://fastapi-z5dp.onrender.com/auth/users/', userData);
 
         console.log('User registered successfully:', response.data);
-        window.location.href="/login"
+        window.location.replace("/login");
       } catch (error) {
         console.error('Error registering user:', error.message);
       }
@@ -100,7 +100,8 @@ const Page = () => {
                   <label htmlFor="terms" className="font-light text-black dark:text-gray-800">Я принимаю <a className="font-medium text-primary-900 hover:underline dark:text-primary-600" href="#">Условия и положения</a></label>
                 </div>
               </div>
-              <button type="submit" className="w-full text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-primary-800" onClick={registerUser}>Принять</button>
+              <button type="button" className="w-full text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-primary-800" onClick={registerUser}>Принять</button>
+
               <p className="text-sm font-light text-gray-500 dark:text-gray-800">
                 Уже есть аккаунт? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500" > <Link href='/login'>Войти</Link></a>
               </p>
