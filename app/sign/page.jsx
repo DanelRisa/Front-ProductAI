@@ -33,10 +33,10 @@ const Page = () => {
           password: password,
         };
 
-        const response = await axios.post('http://localhost:8000/auth/users/', userData);
+        const response = await axios.post('https://fastapi-z5dp.onrender.com/auth/users/', userData);
 
         console.log('User registered successfully:', response.data);
-        router.push("/login")
+        window.location.href="/login";
       } catch (error) {
         console.error('Error registering user:', error.message);
       }
