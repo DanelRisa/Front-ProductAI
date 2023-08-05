@@ -21,39 +21,46 @@ const NavBar = () => {
   }, []);
 
   const [cartItemsCount, setCartItemsCount] = useState(0);
+ 
   const fetchCartItemsCount = async () => {
-     try {
+    try {
       const accessToken = localStorage.getItem("token");
       if (accessToken) {
-        setLoggedIn(true); 
+        setLoggedIn(true);
+        const config = {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+        const response = await axios.get("https://fastapi-z5dp.onrender.com/cart/get_cart/", config);
+        setCartItemsCount(response.data.length);
+      } else {
+        // If there is no access token, set cart items count to 0 and user as not logged in
+        setLoggedIn(false);
+        setCartItemsCount(0);
       }
-      const config = {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      };
-      const response = await axios.get("https://fastapi-z5dp.onrender.com/cart/get_cart/", config);
-      setCartItemsCount(response.data.length);
     } catch (error) {
       console.error("Error fetching cart items:", error);
       setCartItemsCount(0);
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token"); 
-    setLoggedIn(false); 
-  };
-
   useEffect(() => {
+    // Call fetchCartItemsCount once initially
     fetchCartItemsCount();
+
+    // Call fetchCartItemsCount every 5 seconds (5000 milliseconds)
     const intervalId = setInterval(fetchCartItemsCount, 100);
 
+    // Cleanup the interval on component unmount
     return () => {
       clearInterval(intervalId);
     };
   }, []);
-
+  const handleLogout = () => {
+    localStorage.removeItem("token"); 
+    setLoggedIn(false); 
+  };
   return (
     <header className={
       " top-0 w-ful z-10 z-30 bg-white-500 transition-all "
