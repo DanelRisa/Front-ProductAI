@@ -10,7 +10,6 @@ const Page = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confPassword, setConfPassword] = useState('');
-  const [redirectToLogin, setRedirectToLogin] = useState(false);
 
 
   const handleEmailChange = (event) => {
@@ -35,16 +34,16 @@ const Page = () => {
         };
 
         const response = await axios.post('https://fastapi-z5dp.onrender.com/auth/users/', userData);
+
         console.log('User registered successfully:', response.data);
-        setRedirectToLogin(true); // Set the state to trigger the redirection
+        window.location.href="/login"
       } catch (error) {
         console.error('Error registering user:', error.message);
       }
     } else {
       window.alert("Wrong password!!!")
     }
-  };
-  {redirectToLogin && <Redirect to="/login" />}
+  }
   return (
     <section className="mt-10 mb-40">
       <div className="flex flex-col items-center justify-center sm:p-8 mx-auto max-h-screen lg:py-0">
@@ -98,7 +97,7 @@ const Page = () => {
                   <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-black rounded focus:ring-3 focus:ring-primary-300 dark:black dark:border-black dark:focus:ring-primary-600 dark:ring-offset-black" required />
                 </div>
                 <div className="ml-3 text-sm">
-                  <label htmlFor="terms" className="font-light text-black dark:text-gray-800">Я принимаю <a className="font-medium text-primary-900 hover:underline dark:text-primary-600">Условия и положения</a></label>
+                  <label htmlFor="terms" className="font-light text-black dark:text-gray-800">Я принимаю <a className="font-medium text-primary-900 hover:underline dark:text-primary-600" href="#">Условия и положения</a></label>
                 </div>
               </div>
               <button type="submit" className="w-full text-white bg-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-primary-800" onClick={registerUser}>Принять</button>
