@@ -10,6 +10,7 @@ const Page = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confPassword, setConfPassword] = useState('');
+  const [redirectToLogin, setRedirectToLogin] = useState(false);
 
 
   const handleEmailChange = (event) => {
@@ -34,15 +35,16 @@ const Page = () => {
         };
 
         const response = await axios.post('https://fastapi-z5dp.onrender.com/auth/users/', userData);
-        window.location.href="/login";
         console.log('User registered successfully:', response.data);
+        setRedirectToLogin(true); // Set the state to trigger the redirection
       } catch (error) {
         console.error('Error registering user:', error.message);
       }
     } else {
       window.alert("Wrong password!!!")
     }
-  }
+  };
+  {redirectToLogin && <Redirect to="/login" />}
   return (
     <section className="mt-10 mb-40">
       <div className="flex flex-col items-center justify-center sm:p-8 mx-auto max-h-screen lg:py-0">
