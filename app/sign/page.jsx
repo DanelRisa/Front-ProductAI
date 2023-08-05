@@ -35,13 +35,8 @@ const Page = () => {
 
         const response = await axios.post('https://fastapi-z5dp.onrender.com/auth/users/', userData);
 
+        window.location.href = "/login";
         console.log('User registered successfully:', response.data);
-        return (
-          <Link href="/login">
-            <a>Continue to login</a>
-          </Link>
-        );
-
       } catch (error) {
         console.error('Error registering user:', error.message);
       }
