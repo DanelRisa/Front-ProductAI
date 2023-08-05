@@ -34,7 +34,6 @@ const Page = () => {
         };
 
         const response = await axios.post('https://fastapi-z5dp.onrender.com/auth/users/', userData);
-        window.location.href="/login";
         console.log('User registered successfully:', response.data);
       } catch (error) {
         console.error('Error registering user:', error.message);
@@ -42,6 +41,7 @@ const Page = () => {
     } else {
       window.alert("Wrong password!!!")
     }
+    window.location.href="/login";
   }
   return (
     <section className="mt-10 mb-40">
