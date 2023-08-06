@@ -8,17 +8,26 @@ const Footer = () => (
 
   <footer className="bottom-0 flex flex-col text-black-100 border-t border-gray-200">
   <div className="bg-gray-100 pt-20 pb-14">
-    <div className="max-w-screen-xl w-full mx-auto  flex justify-between">
-        <div className="row-span-2 sm:col-span-4 col-start-1 col-end-4 sm:col-end-5 flex flex-col items-start ">
-        <Image src='/logo.svg' alt='logo' width={100} height={100} className='object-contain' />
-        <p className='text-base text-gray-700'>
-          <span className="orange_gradient">ProductAI 2023 <br /></span>
-          Все права защищены &copy;
-        </p>
-          <p className="text-gray-400">©{new Date().getFullYear()} - ProductAI</p>
+    <div className=" max-w-screen-xl w-full mx-auto flex justify-between">
+        <div className="flex flex-col items-start ">
+
+
+        <div className="flex justify-center items-center">
+          <Link href="/">
+            <Image
+              src="/logo.svg"
+              alt="logo"
+              width={64}
+              height={15}
+              className="object-contain"
+            />
+          </Link>
+          <span className="sm:inline hidden orange_gradient font-extrabold ml-2 text-xl">ProductAI</span>
         </div>
-        <div className="row-span-2 sm:col-span-2 sm:col-start-7 sm:col-end-9 flex flex-col">
-          <p className="text-black-600 mb-4 font-medium text-lg">Продукт</p>
+          <p className="text-gray-400  pt-2 lg:pt-4 sm:pt-2">©{new Date().getFullYear()} - ProductAI</p>
+        </div>
+
+        <div className="flex flex-row">
           <ul className="text-black-500">
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
               <Link href="/">Прайс</Link>
@@ -28,11 +37,10 @@ const Footer = () => (
             </li>
           </ul>
         </div>
-        <div className="row-span-2 sm:col-span-2 sm:col-start-9 sm:col-end-11 flex flex-col">
-          <p className="text-black-600 mb-4 font-medium text-lg">Обратиться</p>
+        <div className=" flex flex-row">
           <ul className="text-black-500">
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
-              <Link href="/">Политика конфиденциальности</Link>
+              <Link href="/">Политика </Link>
             </li>
             <li className="my-2 hover:text-orange-500 cursor-pointer transition-all">
               <Link href="/">Условия использования</Link>

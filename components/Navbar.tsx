@@ -91,7 +91,7 @@ const NavBar = () => {
             </button>
           ) : (
           <Link href='/login'>
-            <div className="col-start-10 col-end-12 font-medium flex justify-end items-center pr-8">
+            <div className="col-start-10 col-end-12 font-medium flex justify-end items-center pr:4 lg:pr-8 sm:pr-2">
               <Link href="/sign">
               <p className="text-black-600 mx-2 sm:mx-4 capitalize tracking-wide hover:text-orange-500 transition-all">
                   Регистрация
@@ -101,7 +101,7 @@ const NavBar = () => {
             </div>
           </Link>
             )}
-          <div className='ml-12 sm:ml-4'>
+          <div className='ml-4 lg:ml-12 sm:ml-4'>
             <CartIcon cartItemsCount={cartItemsCount} />
           </div>
         </div>
