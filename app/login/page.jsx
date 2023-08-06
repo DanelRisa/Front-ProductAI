@@ -52,7 +52,7 @@ const Page = () => {
   }
 
   return (
-    <section className="mt-10 mb-40">
+    <section className="mt-10 mb-60">
     <div className="flex flex-col items-center justify-center sm:p-8 mx-auto max-h-screen lg:py-0">
     <div className="w-full bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-zinc-50 dark:border-zinc-300">
         <div className="p-6 space-y-2 sm:space-y-4">

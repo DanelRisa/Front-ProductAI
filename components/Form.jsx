@@ -10,9 +10,9 @@ const Form = () => {
   return (
     <section className='w-full max-w-full flex-start flex-col'>
       <h1 className='head_text text-left'>
-        <span className='orange_gradient'>Что готовим сегодня?</span>
+        <span className='text-5xl orange_gradient'>Что готовим сегодня?</span>
       </h1>
-      <p className='desc text-left max-w-md'>
+      <p className='text-2xl desc text-left max-w-md'>
         Персонализированный поиск выгодных предложений и кулинарных рецептов - все в одном месте!
       </p>
       <form

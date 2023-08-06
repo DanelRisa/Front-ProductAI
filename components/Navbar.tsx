@@ -101,7 +101,7 @@ const NavBar = () => {
             </div>
           </Link>
             )}
-          <div className='ml-4 lg:ml-12 sm:ml-4'>
+          <div className='ml-4 lg:ml-12 sm:ml-2'>
             <CartIcon cartItemsCount={cartItemsCount} />
           </div>
         </div>

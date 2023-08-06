@@ -14,7 +14,7 @@ const CartPage = () => {
     const fetchCartItems = async () => {
       try {
         const accessToken = localStorage.getItem("token");
-  
+
         const config = {
           headers: {
             "Authorization": `Bearer ${accessToken}`,
@@ -25,7 +25,7 @@ const CartPage = () => {
         const response = await axios.get(
           "https://fastapi-z5dp.onrender.com/cart/get_cart/",
           config
-          );
+        );
         console.log(response.data);
         setCartItems(response.data);
       } catch (error) {
@@ -38,26 +38,23 @@ const CartPage = () => {
 
     fetchCartItems();
   }, []);
-    // Function to handle the deletion of a product
-    const handleDeleteProduct = async (productId) => {
-      try {
-        const accessToken = localStorage.getItem("token");
-  
-        const config = {
-          headers: {
-            "Authorization": `Bearer ${accessToken}`,
-          },
-        };
-  
-        // Make the API call to delete the product
-        await axios.delete(`https://fastapi-z5dp.onrender.com/cart/delete_product/${productId}`, config);
-  
-        // Remove the product from the state
-        setCartItems((prevCartItems) => prevCartItems.filter(item => item._id !== productId));
-      } catch (error) {
-        console.error("Error deleting product:", error);
-      }
-    };
+  const handleDeleteProduct = async (productId) => {
+    try {
+      const accessToken = localStorage.getItem("token");
+
+      const config = {
+        headers: {
+          "Authorization": `Bearer ${accessToken}`,
+        },
+      };
+
+      await axios.delete(`https://fastapi-z5dp.onrender.com/cart/delete_product/${productId}`, config);
+
+      setCartItems((prevCartItems) => prevCartItems.filter(item => item._id !== productId));
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
 
   console.log("Cart Items:", cartItems);
   if (loading) return <Loading></Loading>
@@ -65,41 +62,41 @@ const CartPage = () => {
   const totalPrice = cartItems.reduce((total, item) => total + parseFloat(item.price.replace(/[^\d.]/g, "")), 0).toFixed(2);
 
 
-    return (
-<div className="flex flex-wrap justify-center mb-60">
-  <div className="w-full md:w-1/2  px-6 md:px-12 pt-20">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {cartItems.map((item, index) => (
-        <ProductCard
-          key={index}
-          _id={item._id}
-          title={item.title}
-          price={item.price}
-          image={item.image}
-          showButton={false}
-          product_url={item.product_url}
-          isCartPage={true}
-          onDelete={handleDeleteProduct} 
-        />
-      ))}
-    </div>
-  </div>
-  <div className="w-full md:w-1/4 px-6 md:px-12 pt-20">
-    <div className="rounded-lg border bg-white p-6 shadow-md">
-      <div className="mb-2 flex justify-between">
-        <p className="text-gray-700">Общая сумма</p>
+  return (
+    <div className="flex flex-wrap justify-center mb-96">
+      <div className="w-full md:w-1/2  px-6 md:px-12 pt-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {cartItems.map((item, index) => (
+            <ProductCard
+              key={index}
+              _id={item._id}
+              title={item.title}
+              price={item.price}
+              image={item.image}
+              showButton={false}
+              product_url={item.product_url}
+              isCartPage={true}
+              onDelete={handleDeleteProduct}
+            />
+          ))}
+        </div>
       </div>
-      <hr className="my-4" />
-      <div className="flex justify-between">
-        <div className="">
-          <p className="mb-1 text-lg font-bold">{totalPrice}₸</p>
+      <div className="w-full md:w-1/4 px-6 md:px-12 pt-20">
+        <div className="rounded-lg border bg-white p-6 shadow-md">
+          <div className="mb-2 flex justify-between">
+            <p className="text-gray-700">Общая сумма</p>
+          </div>
+          <hr className="my-4" />
+          <div className="flex justify-between">
+            <div className="">
+              <p className="mb-1 text-lg font-bold">{totalPrice}₸</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
   );
 };
-    
+
 export default CartPage;
