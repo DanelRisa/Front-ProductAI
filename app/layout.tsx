@@ -16,7 +16,7 @@ return (
     <html lang="en">
     <body className="relative flex flex-col min-h-screen">
              <NavBar />
-            <main className='flex-growth'>{children}</main>
+            <main className='w-full flex-growth'>{children}</main>
             <Footer />
           </body>
          </html>
