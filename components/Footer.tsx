@@ -6,7 +6,7 @@ import { footerLinks } from "@/constants";
 
 const Footer = () => (
 
-  <footer className="pt-0 flex flex-col text-black-100 border-t border-gray-200">
+  <footer className="w-full pt-0 flex flex-col text-black-100 border-t border-gray-200">
     <div className="px-4 sm:px-2 bg-gray-100 pt-20 pb-14">
       <div className=" max-w-screen-xl w-full mx-auto flex justify-between">
         <div className="flex flex-col items-start ">
